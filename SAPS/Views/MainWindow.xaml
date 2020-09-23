@@ -1,0 +1,781 @@
+﻿<Window
+    x:Class="SAPS.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:prism="http://prismlibrary.com/"
+    Title="{Binding Title}"
+    Width="800"
+    Height="450"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized">
+    <ScrollViewer>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <materialDesign:Card Margin="16" Padding="32">
+                    <StackPanel>
+                        <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">AMP HOUR LOAD</TextBlock>
+
+                        <TextBox
+                            Margin="0,10,0,10"
+                            materialDesign:HintAssist.Hint="No of Appliances"
+                            Text="{Binding NoOfAppliance}" />
+                        <TextBox
+                            Margin="0,10,0,10"
+                            materialDesign:HintAssist.Hint="POWER RATING"
+                            Text="{Binding PowerRating}" />
+                        <TextBox
+                            Margin="0,10,0,10"
+                            materialDesign:HintAssist.Hint="DAILY DUTY"
+                            Text="{Binding DailyDuty}" />
+                        <TextBox
+                            Margin="0,10,0,10"
+                            materialDesign:HintAssist.Hint="WEEKLY DUTY CYCLE"
+                            Text="{Binding WeeklyDailyCycle}" />
+                        <TextBox
+                            Margin="0,10,0,10"
+                            materialDesign:HintAssist.Hint="V. SYSTEM NOMINAL"
+                            Text="{Binding VoltageSystemNominal}" />
+                        <TextBox
+                            Margin="0,10,0,10"
+                            materialDesign:HintAssist.Hint="EFFICIENCY"
+                            Text="{Binding Efficiency}" />
+
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}">
+                                Amp hour load is :
+                            </TextBlock>
+
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}"
+                                Text="{Binding AHL}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}">
+                                Total Amp hour load is :
+                            </TextBlock>
+
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}"
+                                Text="{Binding TotalAHL}" />
+                        </StackPanel>
+
+
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button
+                                Grid.Column="0"
+                                Padding="5"
+                                Command="{Binding AHLCommand}"
+                                Content="AHL"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+                            <Button
+                                Grid.Column="1"
+                                Margin="5,5,5,5"
+                                Padding="5"
+                                Command="{Binding ResetAmpCommand}"
+                                Content="RESET"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+                            <Button
+                                Grid.Column="2"
+                                Padding="5"
+                                Command="{Binding TotalAHLCommand}"
+                                Content="TOTAL"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+                        </Grid>
+                    </StackPanel>
+
+
+
+                </materialDesign:Card>
+
+
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="2">
+                <materialDesign:Card Margin="16" Padding="32">
+                    <StackPanel>
+                        <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">CORRECTED AMP/ DESIGN CURRENT</TextBlock>
+
+                        <TextBox
+                            Margin="0,10,0,10"
+                            materialDesign:HintAssist.Hint="WIRE EFFICIENCY"
+                            Text="{Binding WireEfficiency}" />
+                        <TextBox
+                            Margin="0,10,0,10"
+                            materialDesign:HintAssist.Hint="BATTERY EFFICIENCY"
+                            Text="{Binding BatteryEfficiency}" />
+                        <TextBox
+                            Margin="0,10,0,10"
+                            materialDesign:HintAssist.Hint="PEAK SUN HOURS "
+                            Text="{Binding PeakSunHours}" />
+
+
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}">
+                                CORRECTED AMP LOAD IS:
+                            </TextBlock>
+
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}"
+                                Text="{Binding AHC}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}">
+                                DESIGN CURRENT IS:
+                            </TextBlock>
+
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}"
+                                Text="{Binding DesignCurrent}" />
+                        </StackPanel>
+
+
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button
+                                Grid.Column="0"
+                                Padding="5"
+                                Command="{Binding AHCCommand}"
+                                Content="AHC"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+                            <Button
+                                Grid.Column="1"
+                                Margin="5,5,5,5"
+                                Padding="5"
+                                Command="{Binding ResetAHCCommand}"
+                                Content="RESET"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+                            <Button
+                                Grid.Column="2"
+                                Padding="5"
+                                Command="{Binding DesignCurrentCommand}"
+                                Content="D. CURRENT"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+                        </Grid>
+                    </StackPanel>
+
+
+
+                </materialDesign:Card>
+
+
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="3">
+                <materialDesign:Card Margin="16" Padding="32">
+                    <StackPanel>
+                        <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">DERATED CURRENT/ PARALLEL MODULE</TextBlock>
+
+                        <TextBox
+                            Margin="0,10,0,10"
+                            materialDesign:HintAssist.Hint="MODULE DERATE"
+                            Text="{Binding ModuleRate}" />
+                        <TextBox
+                            Margin="0,10,0,10"
+                            materialDesign:HintAssist.Hint="MFR RATED OUTPUT"
+                            Text="{Binding ManufactureRatedOutput}" />
+
+
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}">
+                                DERATED DESIGN :
+                            </TextBlock>
+
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}"
+                                Text="{Binding DeratedDesign}" />
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}">
+                                PARALLEL MODULE :
+                            </TextBlock>
+
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}"
+                                Text="{Binding ParallelModule}" />
+                        </StackPanel>
+
+
+
+
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button
+                                Grid.Column="0"
+                                Padding="5"
+                                Command="{Binding ResetDeratedeSignCurrent}"
+                                Content="RESET"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+                            <Button
+                                Grid.Column="1"
+                                Margin="5,5,5,5"
+                                Padding="5"
+                                Command="{Binding DeratedDesignCommand}"
+                                Content="OK"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+
+                        </Grid>
+                    </StackPanel>
+
+
+
+                </materialDesign:Card>
+
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Grid.Column="1">
+                <materialDesign:Card Margin="16" Padding="32">
+                    <StackPanel>
+                        <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">S. MODULE/T. MODULE</TextBlock>
+
+                        <TextBox
+                            Margin="0,10,0,10"
+                            materialDesign:HintAssist.Hint="V. MODULE NOMINAL"
+                            Text="{Binding ModuleNominalVoltage}" />
+                        <TextBox
+                            Margin="0,10,0,10"
+                            materialDesign:HintAssist.Hint="SYS. NOMINAL VOLTAGE"
+                            Text="{Binding NominalSystemVoltage}" />
+                        <TextBox
+                            Margin="0,10,0,10"
+                            materialDesign:HintAssist.Hint="PARALLEL MODULE"
+                            Text="{Binding ParallelModule}" />
+
+
+
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}">
+                                Modules in series is :
+                            </TextBlock>
+
+
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}"
+                                Text="{Binding ModulesInSeries}" />
+                        </StackPanel>
+
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button
+                                Grid.Column="0"
+                                Padding="5"
+                                Command="{Binding SeriesModuleCommand}"
+                                Content="S. MODULE"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+                            <Button
+                                Grid.Column="1"
+                                Margin="5,5,5,5"
+                                Padding="5"
+                                Command="{Binding TotalNumberOfModulesCommand}"
+                                Content="T. MODULE"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+
+                        </Grid>
+
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}">
+                                Total number of modules is :
+                            </TextBlock>
+
+
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}"
+                                Text="{Binding TotalNumberOfModules}" />
+                        </StackPanel>
+
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+
+                            <Button
+                                Grid.Column="0"
+                                Margin="5,5,5,5"
+                                Padding="5"
+                                Command="{Binding ResetSAndTModuleCommand}"
+                                Content="RESET"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+
+                        </Grid>
+                    </StackPanel>
+
+
+
+                </materialDesign:Card>
+
+
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="2">
+                <materialDesign:Card Margin="16" Padding="32">
+                    <StackPanel>
+                        <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">BATTERY SIZING</TextBlock>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+                                <TextBox
+                                    Margin="0,10,0,10"
+                                    materialDesign:HintAssist.Hint="BATTERY RATING"
+                                    Text="{Binding BatteryRating}" />
+                                <TextBox
+                                    Margin="0,10,0,10"
+                                    materialDesign:HintAssist.Hint="BATTERY NOMINAL VOLTAGE"
+                                    Text="{Binding BatteryNominalVoltage}" />
+
+
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="0,20,0,20"
+                                        FontSize="12"
+                                        Style="{DynamicResource MaterialDesignTitleTextBlock}">
+                                        BATTERY IN PARALLEL IS :
+                                    </TextBlock>
+
+
+                                    <TextBlock
+                                        Margin="0,20,0,20"
+                                        FontSize="16"
+                                        Style="{DynamicResource MaterialDesignTitleTextBlock}"
+                                        Text="{Binding BatteryInParallel}" />
+                                </StackPanel>
+
+
+
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button
+                                        Grid.Column="0"
+                                        Padding="5"
+                                        Command="{Binding BatteryInParallelCommand}"
+                                        Content="BP"
+                                        Style="{DynamicResource MaterialDesignRaisedButton}" />
+                                    <Button
+                                        Grid.Column="1"
+                                        Margin="5,5,5,5"
+                                        Padding="5"
+                                        Command="{Binding BatteryInSeriesCommand}"
+                                        Content="BS"
+                                        Style="{DynamicResource MaterialDesignRaisedButton}" />
+                                    <Button
+                                        Grid.Column="2"
+                                        Padding="5"
+                                        Command="{Binding TotalNumberOfBatteryCommand}"
+                                        Content="B. TOTAL"
+                                        Style="{DynamicResource MaterialDesignRaisedButton}" />
+
+
+                                </Grid>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="0,20,0,20"
+                                        FontSize="12"
+                                        Style="{DynamicResource MaterialDesignTitleTextBlock}">
+                                        BATTERY IN SERIES IS :
+                                    </TextBlock>
+
+
+                                    <TextBlock
+                                        Margin="0,20,0,20"
+                                        FontSize="16"
+                                        Style="{DynamicResource MaterialDesignTitleTextBlock}"
+                                        Text="{Binding BatteryInSeries}" />
+                                </StackPanel>
+
+
+
+
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="0,20,0,20"
+                                        FontSize="12"
+                                        Style="{DynamicResource MaterialDesignTitleTextBlock}">
+                                        TOTAL BATTERY IS :
+                                    </TextBlock>
+
+
+                                    <TextBlock
+                                        Margin="0,20,0,20"
+                                        FontSize="16"
+                                        Style="{DynamicResource MaterialDesignTitleTextBlock}"
+                                        Text="{Binding TotalNumberOfBattery}" />
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2">
+                                <TextBlock FontSize="14" Style="{DynamicResource MaterialDesignTitleTextBlock}">BATTERY CAPACITY</TextBlock>
+                                <TextBox
+                                    Margin="0,10,0,10"
+                                    materialDesign:HintAssist.Hint="AHC"
+                                    Text="{Binding AHC}" />
+                                <TextBox
+                                    Margin="0,10,0,10"
+                                    materialDesign:HintAssist.Hint="STORAGE DAYS"
+                                    Text="{Binding StorageDays}" />
+                                <TextBox
+                                    Margin="0,10,0,10"
+                                    materialDesign:HintAssist.Hint="MAX DEPTH"
+                                    Text="{Binding MaxDepthDischarge}" />
+                                <TextBox
+                                    Margin="0,10,0,10"
+                                    materialDesign:HintAssist.Hint="TEMP FACTOR"
+                                    Text="{Binding TempFactor}" />
+
+
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button
+                                        Grid.Column="0"
+                                        Padding="5"
+                                        Command="{Binding CorrectedBatteryCapacityCommand}"
+                                        Content="BC"
+                                        Style="{DynamicResource MaterialDesignRaisedButton}" />
+                                </Grid>
+                            </StackPanel>
+
+                        </Grid>
+                        <Button
+                            Command="{Binding ResetBatterySizing}"
+                            Content="RESET"
+                            Style="{DynamicResource MaterialDesignRaisedButton}" />
+                    </StackPanel>
+
+
+
+                </materialDesign:Card>
+
+
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="3">
+                <materialDesign:Card Margin="16" Padding="32">
+                    <StackPanel>
+                        <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">ASC/DDC</TextBlock>
+
+                        <TextBox
+                            Margin="0,10,0,10"
+                            materialDesign:HintAssist.Hint="MODULE SHORT CIRCUIT CURRENT"
+                            Text="{Binding ModuleShortCircuitCurrent}" />
+                        <TextBox Margin="0,10,0,10" materialDesign:HintAssist.Hint="CONTROLLER RATED CAPACITY" />
+
+
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}">
+                                ARRAY SHORT CIRCUIT CURRENT IS :
+                            </TextBlock>
+
+
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}"
+                                Text="{Binding ArrayShortCircuitCurrent}" />
+                        </StackPanel>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button
+                                Grid.Column="0"
+                                Padding="5"
+                                Command="{Binding ArrayShortCircuitCurrentCommand}"
+                                Content="ASC"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+                            <Button
+                                Grid.Column="1"
+                                Margin="5,5,5,5"
+                                Padding="5"
+                                Command="{Binding DesignControllerCapacityCommand}"
+                                Content="DCC"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+
+                            <Button
+                                Grid.Column="2"
+                                Margin="5,5,5,5"
+                                Padding="5"
+                                Content="DN"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+
+                        </Grid>
+
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}">
+                                DESIGN CONTROLLER CAPACITY IS :
+                            </TextBlock>
+
+
+                            <TextBlock
+                                Margin="0,20,0,20"
+                                FontSize="16"
+                                Style="{DynamicResource MaterialDesignTitleTextBlock}"
+                                Text="{Binding DesignControllerCapacity}" />
+                        </StackPanel>
+
+                        <TextBlock
+                            Margin="0,20,0,20"
+                            FontSize="16"
+                            Style="{DynamicResource MaterialDesignTitleTextBlock}">
+                            TOTAL NUMBER OF CONTROLLER IS :
+                        </TextBlock>
+
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button
+                                Grid.Column="0"
+                                Padding="5"
+                                Content="RESET"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+
+
+                        </Grid>
+                    </StackPanel>
+
+
+
+                </materialDesign:Card>
+
+
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="3" Grid.Column="1">
+                <materialDesign:Card Margin="16" Padding="32">
+                    <StackPanel>
+                        <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Inverter Sizing</TextBlock>
+
+                        <TextBox Margin="0,10,0,10" materialDesign:HintAssist.Hint="Corrected Amp" />
+                        <TextBox Margin="0,10,0,10" materialDesign:HintAssist.Hint="System Nominal Voltage" />
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                Grid.Column="0"
+                                Padding="5"
+                                Content="OK"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+                        </Grid>
+
+
+                        <TextBox Margin="0,10,0,10" materialDesign:HintAssist.Hint="INVERTER CAPACITY" />
+                        <TextBox Margin="0,10,0,10" materialDesign:HintAssist.Hint="SOLAR POWER" />
+                        <TextBox Margin="0,10,0,10" materialDesign:HintAssist.Hint="BATTERY CAPACITY" />
+                        <TextBox Margin="0,10,0,10" materialDesign:HintAssist.Hint="CHARGER CTRL CAPACITY" />
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                Grid.Column="0"
+                                Padding="5"
+                                Content="AMOUNT"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+                            <Button
+                                Grid.Column="2"
+                                Padding="5"
+                                Content="T. AMOUNT"
+                                Style="{DynamicResource MaterialDesignRaisedButton}" />
+                        </Grid>
+
+                        <TextBlock
+                            Margin="0,20,0,20"
+                            FontSize="16"
+                            Style="{DynamicResource MaterialDesignTitleTextBlock}">
+                            Total amount in Dollars
+                        </TextBlock>
+
+                        <TextBlock
+                            Margin="0,20,0,20"
+                            FontSize="16"
+                            Style="{DynamicResource MaterialDesignTitleTextBlock}">
+                            Total amount in Naira
+                        </TextBlock>
+                    </StackPanel>
+
+
+
+
+
+                </materialDesign:Card>
+
+
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="2">
+                <StackPanel>
+                    <materialDesign:Card Margin="16" Padding="32">
+                        <StackPanel>
+                            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Solar Power Capacity</TextBlock>
+
+                            <TextBox Margin="0,10,0,10" materialDesign:HintAssist.Hint="Manufacturer Solar Rating" />
+                            <TextBox Margin="0,10,0,10" materialDesign:HintAssist.Hint="Total Module" />
+
+                            <Button Content="SPC" Style="{DynamicResource MaterialDesignRaisedButton}" />
+                        </StackPanel>
+                    </materialDesign:Card>
+
+                    <materialDesign:Card Margin="16" Padding="32">
+                        <StackPanel>
+                            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Total in Naira</TextBlock>
+
+                            <TextBox Margin="0,10,0,10" materialDesign:HintAssist.Hint="Exchange rate" />
+                            <Button Content="T. Naira" Style="{DynamicResource MaterialDesignRaisedButton}" />
+                        </StackPanel>
+
+
+
+                    </materialDesign:Card>
+                    <materialDesign:Card Margin="16" Padding="32">
+                        <StackPanel>
+                            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Bill of estimate</TextBlock>
+
+                            <Button Content="Finish" Style="{DynamicResource MaterialDesignRaisedButton}" />
+                        </StackPanel>
+
+
+
+                    </materialDesign:Card>
+                </StackPanel>
+
+
+
+            </StackPanel>
+
+
+        </Grid>
+    </ScrollViewer>
+</Window>
